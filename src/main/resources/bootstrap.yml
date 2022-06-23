@@ -1,0 +1,59 @@
+spring:
+  profiles: local
+  application:
+    name: MG-SERVICE
+  cloud:
+    config:
+      uri: http://localhost:9030
+      fail-fast: true
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:9020/eureka/}
+    register-with-eureka: true
+    fetch-registry: true
+
+api:
+  gateway: http://localhost:9010
+
+---
+spring:
+  profiles: dev
+  application:
+    name: MG-SERVICE
+  cloud:
+    config:
+      uri: http://localhost:9030
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:9020/eureka/}
+    register-with-eureka: true
+    fetch-registry: true
+
+api:
+  gateway: http://localhost:9010
+
+---
+spring:
+  profiles: op
+  application:
+    name: MG-SERVICE
+  cloud:
+    config:
+      uri: http://ec2-54-180-158-199.ap-northeast-2.compute.amazonaws.com:9030
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://ec2-54-180-158-199.ap-northeast-2.compute.amazonaws.com:9020/eureka/}
+    register-with-eureka: true
+    fetch-registry: true
+
+api:
+  gateway: http://54.180.158.199:9010

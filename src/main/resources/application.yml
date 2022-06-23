@@ -1,0 +1,36 @@
+server:
+  port: 8527
+
+spring:
+  application:
+    name: MG-SERVICE
+  profiles:
+    active: local
+  data:
+    rest:
+      base-path: /mg
+  main:
+    allow-bean-definition-overriding: true
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+  jpa:
+    show-sql: true
+
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:
+    org.springframework.web.client: DEBUG
+    org.hibernate.type: trace
+    com.zaxxer.hikari: DEBUG
+    org.hibernate: DEBUG
+    org.hibernate.event: ERROR
+    org.hibernate.engine: ERROR
+
+mybatis:
+  type-aliases-package: com.sqisoft.mgapi.api
+  mapper-locations: mybatis/mapper/**/*.xml
